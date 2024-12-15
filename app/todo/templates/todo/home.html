@@ -4,4 +4,16 @@
 
 <h1>Home Template</h1>
 
+<a href="{% url 'create-todo-task' %}">Create Todo Task</a>
+
+{% for todo_task in todo_tasks %}
+
+<div>
+    <a href="{% url 'update-todo-task' todo_task.id %}">Edit</a>
+    <a href="{% url 'delete-todo-task' todo_task.id %}">Delete</a>
+    <h5>{{todo_task}}</h5>
+</div>
+
+{% endfor %}
+
 {% endblock content %}

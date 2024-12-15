@@ -25,5 +25,8 @@ class TodoTask(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-updated_at", "created_at"]
+
     def __str__(self):
-        return (self.name[:50]) if len(self.name) > 50 else self.name
+        return (self.name[:50] + "...") if len(self.name) > 50 else self.name
