@@ -13,6 +13,16 @@
 
     {% include 'navbar.html' %}
 
+    {% if messages %}
+    <div id="django-messages-container">
+        <ul class="django-messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
     {% block content %}
 
 

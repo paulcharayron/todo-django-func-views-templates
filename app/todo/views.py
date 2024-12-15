@@ -1,8 +1,38 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib import messages
 
 from .models import TodoTask
 from .forms import TodoTaskForm
+
+
+def loginPage(request):
+
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        try:
+            user = get_user_model().objects.get(email=email)
+
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("home")
+            else:
+                messages.error(request, "Invalid credentials")
+        except:
+            messages.error(request, "Invalid credentials")
+
+    context = {}
+    return render(request, "todo/login_register.html", context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect("home")
 
 
 def home(request):
