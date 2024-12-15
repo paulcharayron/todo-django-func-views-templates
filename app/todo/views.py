@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 
 from .models import TodoTask
 from .forms import TodoTaskForm
 
 
 def home(request):
-    todo_tasks = TodoTask.objects.all()
-    context = {"todo_tasks": todo_tasks}
+    q = request.GET.get("q") if request.GET.get("q") != None else ""
+    todo_tasks = TodoTask.objects.filter(
+        Q(name__icontains=q) | Q(description__icontains=q)
+    )
+    todo_tasks_count = todo_tasks.count
+
+    context = {
+        "todo_tasks": todo_tasks,
+        "todo_tasks_count": todo_tasks_count,
+    }
     return render(request, "todo/home.html", context)
 
 
