@@ -2,10 +2,17 @@
 
 {% block content %}
 
-<div>
+<div class="todo-form-container">
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
+        <div>
+            <div>Name</div>
+            {{form.name}}
+        </div>
+        <div>
+            <div>Description</div>
+            {{form.description}}
+        </div>
         <input type="submit" value="Submit" />
     </form>
 </div>

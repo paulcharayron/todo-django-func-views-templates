@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if page == "login" %}
+
+<div class="todo-form-container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+            <div>Email</div>
+            <input type="text" name="email" placeholder="Enter Email Address" />
+        </div>
+        <div>
+            <div>Password</div>
+            <input type="password" name="password" placeholder="Enter Password" />
+        </div>
+
+        <input type="submit" value="login" />
+    </form>
+
+    <div>Haven't signed up yet?<a href="{% url 'register' %}" id="login-to-signup-link">Sign up</a></div>
+</div>
+
+{% else %}
+
+<div class="todo-form-container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+            <div>Email</div>
+            {{form.email}}
+        </div>
+        <div>
+            <div>Name</div>
+            {{form.name}}
+        </div>
+        <div>
+            <div title="hey">Password</div>
+            <div class="register-help-text">{{form.password1.help_text}}</div>
+            {{form.password1}}
+        </div>
+        <div>
+            <div>Confirm Password</div>
+            <div class="register-help-text"><span>{{form.password2.help_text}}</span></div>
+            {{form.password2}}
+        </div>
+
+        <input type="submit" value="Sign up" />
+    </form>
+
+    <div>Already signed up?<a href="{% url 'login' %}" id="signup-to-login-link">Login</a></div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

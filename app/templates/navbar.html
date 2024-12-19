@@ -1,13 +1,16 @@
-<div id="navbar-container">
-    <a href="{% url 'home' %}">
-        <h1>Logo</h1>
-    </a>
-
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+<div id="navbar-home">
+    <a href="{% url 'home' %}">HOME</a>
 </div>
 
-<hr>
+<div id="navbar-logo">
+    <a href="{% url 'home' %}">Todo App</a>
+</div>
+
+<div id="navbar-user">
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'user-profile' request.user.id %}">{{request.user.name}}</a>
+    <a href="{% url 'logout' %}">LOGOUT</a>
+    {% else %}
+    <a href="{% url 'login' %}">LOGIN</a>
+    {% endif %}
+</div>

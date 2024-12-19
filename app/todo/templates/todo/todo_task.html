@@ -2,15 +2,18 @@
 
 {% block content %}
 
-<div>
-    <h5>{{todo_task}}</h5>
+<div id="task-details">
     <div>
-        <p>Owner: {{todo_task.owner.name}}</p>
-        <p>Created at: {{todo_task.created_at}}</p>
-        <p>Updated at: {{todo_task.updated_at}}</p>
+        <div>
+            <h3>{{todo_task}}</h3>
+        </div>
+        <div>
+            <div>Created at: {{todo_task.created_at}}</div>
+            <div>Updated at: {{todo_task.updated_at}}</div>
+        </div>
     </div>
     <div>
-        <p>{{todo_task.description}}</p>
+        {{todo_task.description}}
     </div>
 </div>
 

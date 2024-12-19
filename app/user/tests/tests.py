@@ -1,5 +1,5 @@
 """
-Tests for the models of the application.
+Tests for the User model of the application.
 """
 
 from django.test import TestCase

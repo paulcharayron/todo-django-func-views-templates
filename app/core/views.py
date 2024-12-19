@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def errorPage(request, err_msg):
+    return render(
+        request,
+        "error.html",
+        {
+            "err_msg": err_msg,
+        },
+    )

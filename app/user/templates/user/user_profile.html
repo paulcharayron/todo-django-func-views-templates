@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div id="user-profile">
+    <div>
+        <h2>{{user.name}}</h2>
+    </div>
+    <div>
+        <div>Email Address: {{user.email}}</div>
+    </div>
+</div>
+
+{% endblock content %}

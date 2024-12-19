@@ -2,13 +2,15 @@
 
 {% block content %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-
-    <p>Are you sure you want to delete {{obj_to_del}}?</p>
-    <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
-
-    <input type="submit" value="Confirm" />
-</form>
+<div id="delete-task-form-container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>Are you sure you want to delete {{obj_to_del}}?</div>
+        <div>
+            <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
+            <input type="submit" value="Confirm" />
+        </div>
+    </form>
+</div>
 
 {% endblock content %}

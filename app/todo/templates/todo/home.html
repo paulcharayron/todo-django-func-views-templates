@@ -2,29 +2,43 @@
 
 {% block content %}
 
-<div class="home-container">
-    <h1>Home Template</h1>
+{% if request.user.is_authenticated %}
 
-    <div>
-        <h3>Search Tasks</h3>
-        <form method="GET" action="{% url 'home' %}">
-            <input type="text" name="q" placeholder="Search Task..." />
-        </form>
-    </div>
+<div id="new-task">
+    <a href="{% url 'create-todo-task' %}">New Task</a>
+</div>
 
-    <a href="{% url 'create-todo-task' %}">Create Task</a>
+<div id="search-tasks-form">
+    <form method="GET" action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Search Tasks..." />
+    </form>
+</div>
 
-    <div>
-        <h3>{{todo_tasks_count}} tasks available.</h3>
+<div id="search-tasks-results">
+    <div id="search-tasks-results-count">{{todo_tasks_count}} tasks available.</div>
+    <div id="search-tasks-results-items">
         {% for todo_task in todo_tasks %}
-        <div>
-            <a href="{% url 'update-todo-task' todo_task.id %}">Edit</a>
-            <a href="{% url 'delete-todo-task' todo_task.id %}">Delete</a>
-            <a href="{% url 'todo-task' todo_task.id %}">See</a>
-            <h5>{{todo_task}}</h5>
+        <div id="search-tasks-results-item">
+            <a href="{% url 'update-todo-task' todo_task.id %}" class="search-tasks-results-item-action-link"><i
+                    class="material-icons"><i class="material-icons">edit</i></i></a>
+            <a href="{% url 'delete-todo-task' todo_task.id %}" class="search-tasks-results-item-action-link"><i
+                    class="material-icons">delete</i></a>
+            <a href="{% url 'todo-task' todo_task.id %}" class="search-tasks-results-item-action-link"><i
+                    class="material-icons">remove_red_eye</i></a>
+            <span>{{todo_task}}</span>
         </div>
         {% endfor %}
     </div>
 </div>
+
+{% else %}
+
+<div id="todo-home-need-login">
+    <div>Welcome to the Todo application.</div>
+    <br>
+    <div>Please log in to see your tasks.</div>
+</div>
+
+{% endif %}
 
 {% endblock content %}
