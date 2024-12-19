@@ -27,6 +27,7 @@ def home(request):
     return render(request, "todo/home.html", context)
 
 
+@login_required(login_url="login")
 def todoTask(request, pk):
     todo_task = TodoTask.objects.get(id=pk)
     context = {"todo_task": todo_task}
